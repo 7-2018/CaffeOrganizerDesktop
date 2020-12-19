@@ -3,7 +3,7 @@ CREATE TABLE [dbo].[Workers]
     [Worker_ID] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Password] NVARCHAR(50) NOT NULL, 
     [User_Name] NVARCHAR(50) NOT NULL, 
-    [Emaill] NVARCHAR(50) NOT NULL, 
+    [Email] NVARCHAR(50) NOT NULL, 
     [Phone] NVARCHAR(50) NOT NULL
 )
 
