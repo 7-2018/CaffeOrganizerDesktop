@@ -15,9 +15,26 @@ namespace BusinessLayer
         {
             this.tableRepository = new TableRepository();
         }
-        public List<CaffeTable> getCaffeWorkers()
+        public List<CaffeTable> getCaffeTables()
         {
             return this.tableRepository.GetCaffeTables();
         }
+        public bool InsertCaffeTable(CaffeTable caffeTable)
+        {
+            int result = this.tableRepository.InsertCaffeTable(caffeTable);
+            if (result != 0)
+                return true;
+            else
+                return false;
+        }
+        public bool DeleteTable(int tableId)
+        {
+            int result = this.tableRepository.DeleteTable(tableId);
+            if (result != 0)
+                return true;
+            else
+                return false;
+        }
+        
     }
 }
