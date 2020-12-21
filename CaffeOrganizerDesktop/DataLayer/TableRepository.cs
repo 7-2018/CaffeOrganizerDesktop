@@ -48,25 +48,24 @@ namespace DataLayer
             {
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(connectionString);
-                sqlCommand.CommandText = "Delete from Workers where Worker_ID = @Worker_ID";
-                sqlCommand.Parameters.AddWithValue("@Worker_ID", tableid);
+                sqlCommand.CommandText = "Delete from Tables where Table_ID = @tableID";
+                sqlCommand.Parameters.AddWithValue("@tableID", tableid);
                 result = sqlCommand.ExecuteNonQuery();
             }
             return result;
         }
-        public int UpdateWorker(CaffeWorker caffeWorker)
+        public int UpdateTable(CaffeTable caffeTable)
         {
             int result;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(connectionString);
-                sqlCommand.CommandText = "Update Students SET Password =@pass, User_Name = @userName, Email=@email, Phone=@phone where Worker_ID = @workerID";
-                sqlCommand.Parameters.AddWithValue("@pass", caffeWorker.Password);
-                sqlCommand.Parameters.AddWithValue("@userName", caffeWorker.User_Name);
-                sqlCommand.Parameters.AddWithValue("@email", caffeWorker.Email);
-                sqlCommand.Parameters.AddWithValue("@phone", caffeWorker.Phone);
-                sqlCommand.Parameters.AddWithValue("@workerID", caffeWorker.Worker_ID);
+                sqlCommand.CommandText = "Update Tables SET Worker_ID =@workerID, Number_Of_Seats = @numberOfSeats, Taken=@take where Table_ID = @tableID";
+                sqlCommand.Parameters.AddWithValue("@workerID", caffeTable.Worker_ID);
+                sqlCommand.Parameters.AddWithValue("@numberOfSeats", caffeTable.Number_Of_Seats);
+                sqlCommand.Parameters.AddWithValue("@take", caffeTable.Taken);
+                sqlCommand.Parameters.AddWithValue("@tableID", caffeTable.Table_ID);
                 result = sqlCommand.ExecuteNonQuery();
             }
             return result;
