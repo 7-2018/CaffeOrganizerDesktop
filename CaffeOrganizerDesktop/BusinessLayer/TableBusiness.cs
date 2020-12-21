@@ -35,6 +35,13 @@ namespace BusinessLayer
             else
                 return false;
         }
-        
+        public bool UpdateTable(CaffeTable caffeTable)
+        {
+            int result = this.tableRepository.UpdateTable(caffeTable);
+            if (result != 0)
+                return true;
+            else
+                return false;
+        }
     }
 }
