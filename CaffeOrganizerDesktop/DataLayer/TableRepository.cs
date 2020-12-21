@@ -1,46 +1,47 @@
-﻿using System;
+﻿using DataLayer.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer 
+namespace DataLayer
 {
-    public class WorkerRepository
+    public class TableRepository
     {
         public string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CaffeOrganizerDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        public List<CaffeWorker> GetCaffeWorkers()
+        public List<CaffeTable> GetCaffeTables()
         {
-            List<CaffeWorker> caffeWorkers = new List<CaffeWorker>();
+            List<CaffeTable> caffeTables = new List<CaffeTable>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = connection;
-                sqlCommand.CommandText = "Select * From Workers";
+                sqlCommand.CommandText = "Select * From Tables";
                 SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                while(dataReader.Read())
+                while (dataReader.Read())
                 {
-                    caffeWorkers.Add(new CaffeWorker(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetString(3), dataReader.GetString(4)));
+                    caffeTables.Add(new CaffeTable(dataReader.GetInt32(0), dataReader.GetInt32(1), dataReader.GetInt32(2), dataReader.GetBoolean(3)));
                 }
                 connection.Close();
             }
-            return caffeWorkers;
+            return caffeTables;
         }
-        public int InsertCaffeWorker(CaffeWorker caffeWorker)
+        public int InsertCaffeTable(CaffeTable caffeTable)
         {
             int result;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(connectionString);
-                sqlCommand.CommandText = $"Insert into Workers(Worker_ID, Password, User_Name, Email, Phone) values({caffeWorker.Worker_ID},{caffeWorker.Password},{caffeWorker.User_Name},{caffeWorker.Email},{caffeWorker.Phone})";
+                sqlCommand.CommandText = $"Insert into Tables(Table_ID, Worker_ID, Number_Of_Seats, Taken) values({caffeTable.Table_ID},{caffeTable.Worker_ID},{caffeTable.Number_Of_Seats},{caffeTable.Taken})";
                 result = sqlCommand.ExecuteNonQuery();
             }
             return result;
         }
-        public int DeleteWorker(int workerid)
+        public int DeleteTable(int tableid)
         {
             int result;
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -48,7 +49,7 @@ namespace DataLayer
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(connectionString);
                 sqlCommand.CommandText = "Delete from Workers where Worker_ID = @Worker_ID";
-                sqlCommand.Parameters.AddWithValue("@Worker_ID", workerid);
+                sqlCommand.Parameters.AddWithValue("@Worker_ID", tableid);
                 result = sqlCommand.ExecuteNonQuery();
             }
             return result;
