@@ -42,9 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticleRepository.cs" />
+    <Compile Include="BillItemRepository.cs" />
     <Compile Include="BillRepository.cs" />
     <Compile Include="Models\CaffeArticle.cs" />
     <Compile Include="Models\CaffeBill.cs" />
+    <Compile Include="Models\CaffeBillItem.cs" />
     <Compile Include="Models\CaffeTable.cs" />
     <Compile Include="Models\CaffeWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

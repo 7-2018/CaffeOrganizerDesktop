@@ -48,7 +48,7 @@ namespace DataLayer
             {
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(connectionString);
-                sqlCommand.CommandText = "Delete from Workers where Article_ID = @articleID";
+                sqlCommand.CommandText = "Delete from Articles where Article_ID = @articleID";
                 sqlCommand.Parameters.AddWithValue("@articleID", articleid);
                 result = sqlCommand.ExecuteNonQuery();
             }
