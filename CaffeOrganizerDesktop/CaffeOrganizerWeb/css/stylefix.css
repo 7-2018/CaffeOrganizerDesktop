@@ -8194,7 +8194,7 @@ h1, h2, h3, h4, h5,
 #sidebar {
   min-width: 270px;
   max-width: 270px;
-  background: #3445b4;
+  background: #4fb9b1;
   color: #fff;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -8275,7 +8275,7 @@ h1, h2, h3, h4, h5,
           -webkit-transform: rotate(45deg);
           -ms-transform: rotate(45deg);
           transform: rotate(45deg);
-          background: #3445b4;
+          background: #4fb9b1;
           border-radius: 10px; }
         #sidebar .custom-menu .btn.btn-primary:hover, #sidebar .custom-menu .btn.btn-primary:focus {
           background: transparent !important;
@@ -8340,4 +8340,4 @@ a[data-toggle="collapse"] {
     color: rgba(255, 255, 255, 0.5); }
 
 .subscribe-form .form-control {
-  background: #3b4ec6; }
+  background: #babebe }

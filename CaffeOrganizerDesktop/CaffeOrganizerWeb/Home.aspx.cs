@@ -14,6 +14,7 @@ namespace CaffeOrganizerWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            int i = 1;
             
             TableBusiness tb = new TableBusiness();
             foreach(CaffeTable c in tb.getCaffeTables())
@@ -22,10 +23,12 @@ namespace CaffeOrganizerWeb
                 column.Attributes.Add("class", "col-3 text-center");
               
                 if (c.Taken)
-                    column.InnerHtml += $"<p style='background:red'>{c.Table_ID} <br> {c.Number_Of_Seats}<p>";
+                    column.InnerHtml += $"<p  style='background:green;border-radius: 0.5rem'>Table: {i} <br><i class='fa fa-coffee fa-3x' aria-hidden='true'></i><br> Seats: {c.Number_Of_Seats}<p>";
                 else
-                    column.InnerHtml += $"<p style='background:green'>{c.Table_ID} <br> {c.Number_Of_Seats}<p>";
+                    column.InnerHtml += $"<p style='background:red;border-radius: 0.5rem'>Table: {i} <br><i class='fa fa-coffee fa-3x' aria-hidden='true'></i><br> Seats: {c.Number_Of_Seats}<p>";
                 maindiv.Controls.Add(column);
+                i++;
+
             }
         }
     }
