@@ -12,21 +12,26 @@ using System.Windows.Forms;
 
 namespace CaffeOrganizer
 {
-    public partial class Form1 : Form
+    public partial class LoginPage : Form
     {
-        public Form1()
+        public LoginPage()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            WorkerBusiness wokrerBusiness = new WorkerBusiness();
-            List<CaffeWorker> caffeWorkers = wokrerBusiness.GetCaffeWorkers();
-            foreach(CaffeWorker caffeWorker in caffeWorkers)
-            {
-                listBox1.Items.Add(caffeWorker.ToString());
-            }
+            panel1.BackColor = Color.FromArgb(100, 0, 0, 0);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
