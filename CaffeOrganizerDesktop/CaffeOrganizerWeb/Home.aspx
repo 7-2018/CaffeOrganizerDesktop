@@ -53,9 +53,11 @@
 
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
+		  <form id="form1" runat="server">
        <div id="maindiv" runat="server" style="color:white" class="row">
 
        </div>
+			  </form>
       </div>
 		</div>
 

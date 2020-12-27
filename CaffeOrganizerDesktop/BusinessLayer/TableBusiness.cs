@@ -10,6 +10,15 @@ namespace BusinessLayer
 {
     public class TableBusiness
     {
+        public static CaffeTable curentTable;
+
+        public CaffeTable GetSetCaffeTable
+        {
+            get { return curentTable; }
+            set { curentTable = value; }
+        }
+       
+        
         private TableRepository tableRepository;
         public TableBusiness()
         {

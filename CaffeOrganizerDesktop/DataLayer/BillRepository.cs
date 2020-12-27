@@ -23,7 +23,7 @@ namespace DataLayer
                 SqlDataReader dataReader = sqlCommand.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    caffeBills.Add(new CaffeBill(dataReader.GetInt32(0), dataReader.GetInt32(1), dataReader.GetInt32(2), dataReader.GetDateTime(3)));
+                    caffeBills.Add(new CaffeBill(dataReader.GetInt32(0), dataReader.GetInt32(1), dataReader.GetInt32(2), dataReader.GetDateTime(3), dataReader.GetBoolean(4)));
                 }
                 connection.Close();
             }
@@ -36,7 +36,8 @@ namespace DataLayer
             {
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.CommandText = $"Insert into Bills(Bill_ID, Table_ID, Total_Price, Date_And_Time) values({caffeBill.Bill_ID},{caffeBill.Table_ID},{caffeBill.Total_Price},{caffeBill.Date_And_Time})";
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandText = $"Insert into Bills( Table_ID, Total_Price, Date_And_Time, Paid) values({caffeBill.Table_ID},{caffeBill.Total_Price},{caffeBill.Date_And_Time.ToShortDateString()},0)";
                 result = sqlCommand.ExecuteNonQuery();
             }
             return result;
@@ -60,8 +61,9 @@ namespace DataLayer
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand(connectionString);
-                sqlCommand.CommandText = "Update Bills SET Table_ID =@tableID, Total_Price = @totalPrice, Date_And_Time = @dateAndTime, where Bill_ID = @billID";
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandText = "Update Bills SET Table_ID =@tableID, Total_Price = @totalPrice, Date_And_Time = @dateAndTime where Bill_ID = @billID";
                 sqlCommand.Parameters.AddWithValue("@tableID", caffeBill.Table_ID);
                 sqlCommand.Parameters.AddWithValue("@totalPrice", caffeBill.Total_Price);
                 sqlCommand.Parameters.AddWithValue("@dateAndTime", caffeBill.Date_And_Time);

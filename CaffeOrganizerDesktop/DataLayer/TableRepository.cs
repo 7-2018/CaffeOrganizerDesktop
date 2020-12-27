@@ -60,7 +60,8 @@ namespace DataLayer
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand(connectionString);
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
                 sqlCommand.CommandText = "Update Tables SET Worker_ID =@workerID, Number_Of_Seats = @numberOfSeats, Taken=@take where Table_ID = @tableID";
                 sqlCommand.Parameters.AddWithValue("@workerID", caffeTable.Worker_ID);
                 sqlCommand.Parameters.AddWithValue("@numberOfSeats", caffeTable.Number_Of_Seats);

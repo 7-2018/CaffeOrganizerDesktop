@@ -35,7 +35,8 @@ namespace DataLayer
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand(connectionString);
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
                 sqlCommand.CommandText = $"Insert into BillItems(Article_ID, Bill_ID, Quantity) values({caffeBillItem.Article_ID},{caffeBillItem.Bill_ID},{caffeBillItem.Quantity})";
                 result = sqlCommand.ExecuteNonQuery();
             }
