@@ -8,9 +8,18 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
-    class BillBusiness
+    public class BillBusiness
     {
         private BillRepository billRepository;
+
+        public static CaffeBill currentBill;
+        public CaffeBill GetCaffeBill
+        {
+            get { return currentBill; }
+            set { currentBill = value; }
+
+        }
+
         public BillBusiness()
         {
             this.billRepository = new BillRepository();
