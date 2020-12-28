@@ -27,7 +27,7 @@ namespace CaffeOrganizerWeb
             naslov.InnerHtml += $"<span style='color:black;'> {TableBusiness.curentTable.Table_ID}</span>";
             Label1.Text = "Total: " + BillBusiness.currentBill.Total_Price.ToString()+" RSD";
            
-            ArticleBusiness ab = new ArticleBusiness();
+            ArticleRepository ab = new ArticleRepository();
             BillItemRepository bib = new BillItemRepository();
             BillBusiness br = new BillBusiness();
             cb = bib.GetCaffeBillItems().Where(x => x.Bill_ID == br.GetCaffeBill.Bill_ID).ToList();
@@ -46,7 +46,7 @@ namespace CaffeOrganizerWeb
 
         protected void dodaj_ServerClick(object sender, EventArgs e)
         {
-            ArticleBusiness ab = new ArticleBusiness();
+            ArticleRepository ab = new ArticleRepository();
             BillItemRepository billItem = new BillItemRepository();
             BillBusiness bp = new BillBusiness();
             String s = toplinapici.Value;

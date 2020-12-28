@@ -32,7 +32,7 @@
 	              <a href="Bills.aspx"><span class="fa fa-money mr-3" aria-hidden="true" style="color:#babebe ;"></span> Dnevni izveštaj</a>
 	          </li>
 	          <li>
-              <a href="#"><span class="fa fa-user-circle-o mr-3" aria-hidden="true" style="color:#babebe ;"></span>Baza artikala</a>
+              <a href="Articles.aspx"><span class="fa fa-user-circle-o mr-3" aria-hidden="true" style="color:#babebe ;"></span>Baza artikala</a>
 	          </li>
 	        </ul>
 

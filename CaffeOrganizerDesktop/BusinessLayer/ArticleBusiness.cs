@@ -10,10 +10,10 @@ namespace BusinessLayer
 {
     class ArticleBusiness
     {
-        private DataLayer.ArticleBusiness articleRepository;
+        private DataLayer.ArticleRepository articleRepository;
         public ArticleBusiness()
         {
-            this.articleRepository = new DataLayer.ArticleBusiness();
+            this.articleRepository = new DataLayer.ArticleRepository();
         }
         public List<CaffeArticle> GetCaffeArticles()
         {
