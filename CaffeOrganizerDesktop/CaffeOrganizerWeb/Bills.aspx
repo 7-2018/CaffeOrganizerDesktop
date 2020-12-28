@@ -23,7 +23,7 @@
 	        </button>
         </div>
 				<div class="p-4">
-		  		<h1><a href="index.html" class="logo" style="color:#babebe;">Caffe Organizer<span style="color:rgb(128, 128, 128);">Caffe Elixir</span></a></h1>
+		  		<h1><a href="index.html" class="logo" style="color:#babebe;">Caffe Organizer<span id="curworker" runat="server" style="color:rgb(128, 128, 128);">Caffe Elixir</span></a></h1>
 	        <ul class="list-unstyled components mb-5">
 	          <li class="active">
 	            <a href="#"><span class="fa fa-sitemap mr-3" aria-hidden="true" style="color:#babebe ;"></span> Tables</a>
@@ -54,9 +54,8 @@
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
 		  <form id="form1" runat="server">
-       <div id="maindiv" runat="server" style="color:white" class="row">
-
-
+       <div id="maindiv" runat="server" style="color:white" class="row text-center">
+           <div class="col-12"> <h1 style="font-family:'Times New Roman'; text-align:center; color:darkred; text-transform:uppercase;">Dnevni izveštaj:</h1> </div>
        </div>
 			  </form>
       </div>

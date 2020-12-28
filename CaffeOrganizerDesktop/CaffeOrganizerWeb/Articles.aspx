@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="CaffeOrganizerWeb.Home" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Articles.aspx.cs" Inherits="CaffeOrganizerWeb.Articles" %>
 
 <!doctype html>
 <html lang="en">
@@ -26,22 +26,22 @@
 		  		<h1><a href="index.html" class="logo" style="color:#babebe;">Caffe Organizer<span id="currwork" runat="server" style="color:rgb(128, 128, 128);">Caffe Elixir</span></a></h1>
 	        <ul class="list-unstyled components mb-5">
 	          <li class="active">
-	            <a href="#"><span class="fa fa-sitemap mr-3" aria-hidden="true" style="color:#babebe ;"></span> Stolovi</a>
+	            <a href="#"><span class="fa fa-sitemap mr-3" aria-hidden="true" style="color:#babebe ;"></span> Tables</a>
 	          </li>
 	          <li>
-	              <a href="Bills.aspx"><span class="fa fa-money mr-3" aria-hidden="true" style="color:#babebe ;"></span> Dnevni izveštaj</a>
+	              <a href="Bills.aspx"><span class="fa fa-money mr-3" aria-hidden="true" style="color:#babebe ;"></span> Bill</a>
 	          </li>
 	          <li>
-              <a href="#"><span class="fa fa-user-circle-o mr-3" aria-hidden="true" style="color:#babebe ;"></span>Baza artikala</a>
+              <a href="#"><span class="fa fa-user-circle-o mr-3" aria-hidden="true" style="color:#babebe ;"></span> Worker</a>
 	          </li>
 	        </ul>
 
 	        <div class="mb-5">
-						<h3 class="h6 mb-3">Pošalji dnevni izveštaj na e-mail</h3>
+						<h3 class="h6 mb-3">Send daily report to an e-mail</h3>
 						<form action="#" class="subscribe-form">
 	            <div class="form-group d-flex">
 	            	<div class="icon"><span class="icon-paper-plane"></span></div>
-	              <input type="text" class="form-control" placeholder="Unesi e-mail adresu">
+	              <input type="text" class="form-control" placeholder="Enter Email Address">
 	            </div>
 	          </form>
 					</div>

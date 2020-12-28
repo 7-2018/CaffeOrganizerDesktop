@@ -1,4 +1,5 @@
-﻿using DataLayer;
+﻿using BusinessLayer;
+using DataLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +18,16 @@ namespace CaffeOrganizerWeb
 
         protected void login_ServerClick(object sender, EventArgs e)
         {
-            WorkerRepository wr = new WorkerRepository();
+            WorkerBusiness wr = new WorkerBusiness();
             foreach(CaffeWorker caffeWorker in wr.GetCaffeWorkers())
-            { 
-            if (txtuser.Value.Equals(caffeWorker.User_Name) && txtpass.Value.Equals(caffeWorker.Password))
-                Response.Redirect("default.aspx");
-            else
-                Label1.Visible = true;
+            {
+                if (txtuser.Value.Equals(caffeWorker.User_Name) && txtpass.Value.Equals(caffeWorker.Password))
+                {
+                    wr.getsetworker = caffeWorker;
+                    Response.Redirect("Home.aspx");
+                }
+                else
+                    Label1.Visible = true;
             }
             
         }

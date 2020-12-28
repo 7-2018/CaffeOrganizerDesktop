@@ -37,7 +37,8 @@ namespace DataLayer
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = connection;
-                sqlCommand.CommandText = $"Insert into Bills( Table_ID, Total_Price, Date_And_Time, Paid) values({caffeBill.Table_ID},{caffeBill.Total_Price},{caffeBill.Date_And_Time.ToShortDateString()},0)";
+                caffeBill.Date_And_Time = DateTime.Now;
+                sqlCommand.CommandText = $"Insert into Bills( Table_ID, Total_Price, Date_And_Time, Paid) values({caffeBill.Table_ID},{caffeBill.Total_Price},'{caffeBill.Date_And_Time.ToString("MM/dd/yyyy HH:mm:ss")}',0)";
                 result = sqlCommand.ExecuteNonQuery();
             }
             return result;
