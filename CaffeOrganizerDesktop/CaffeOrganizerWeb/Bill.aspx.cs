@@ -19,10 +19,11 @@ namespace CaffeOrganizerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            naslov.InnerText = "RAČUN ZA STO BROJ " + TableBusiness.curentTable.Table_ID;
+            naslov.InnerText = "RAČUN ZA STO BROJ ";
             naslov.Style.Add("color", "#a37417");
             naslov.Style.Add("font-size", "3.5rem");
             naslov.Style.Add("font-family", "times new roman");
+            naslov.InnerHtml += $"<span style='color:black;'> {TableBusiness.curentTable.Table_ID}</span>";
             Label1.Text = "Total: " + BillBusiness.currentBill.Total_Price.ToString()+" RSD";
            
             ArticleBusiness ab = new ArticleBusiness();
@@ -59,8 +60,51 @@ namespace CaffeOrganizerWeb
                  billItem.InsertCaffeBillItem(new CaffeBillItem(c.Article_ID, BillBusiness.currentBill.Bill_ID, 1));
                 Label1.Text = "Total: " + BillBusiness.currentBill.Total_Price+" RSD";
                 bp.UpdateCaffeBill(BillBusiness.currentBill);
-                Response.Redirect("Bill.aspx");
+                
             }
+            String s1 = zestina.Value;
+            if (s1 != null && s1 != "Žestina")
+            {
+                CaffeArticle c = ab.GetCaffeArticles().Where(x => x.Name.Equals(s1)).ToList()[0];
+                BillBusiness.currentBill.Total_Price += c.Price;
+                HtmlGenericControl par = new HtmlGenericControl("p");
+                par.InnerText = c.ToString();
+                // contentmain.Controls.Add(par);
+                BillItemRepository br = new BillItemRepository();
+                billItem.InsertCaffeBillItem(new CaffeBillItem(c.Article_ID, BillBusiness.currentBill.Bill_ID, 1));
+                Label1.Text = "Total: " + BillBusiness.currentBill.Total_Price + " RSD";
+                bp.UpdateCaffeBill(BillBusiness.currentBill);
+             
+            }
+            String s2 = Pivo.Value;
+            if (s2 != null && s2 != "Pivo")
+            {
+                CaffeArticle c = ab.GetCaffeArticles().Where(x => x.Name.Equals(s2)).ToList()[0];
+                BillBusiness.currentBill.Total_Price += c.Price;
+                HtmlGenericControl par = new HtmlGenericControl("p");
+                par.InnerText = c.ToString();
+                // contentmain.Controls.Add(par);
+                BillItemRepository br = new BillItemRepository();
+                billItem.InsertCaffeBillItem(new CaffeBillItem(c.Article_ID, BillBusiness.currentBill.Bill_ID, 1));
+                Label1.Text = "Total: " + BillBusiness.currentBill.Total_Price + " RSD";
+                bp.UpdateCaffeBill(BillBusiness.currentBill);
+
+            }
+            String s3 = bezalkohola.Value;
+            if (s3 != null && s3 != "Pivo")
+            {
+                CaffeArticle c = ab.GetCaffeArticles().Where(x => x.Name.Equals(s3)).ToList()[0];
+                BillBusiness.currentBill.Total_Price += c.Price;
+                HtmlGenericControl par = new HtmlGenericControl("p");
+                par.InnerText = c.ToString();
+                // contentmain.Controls.Add(par);
+                BillItemRepository br = new BillItemRepository();
+                billItem.InsertCaffeBillItem(new CaffeBillItem(c.Article_ID, BillBusiness.currentBill.Bill_ID, 1));
+                Label1.Text = "Total: " + BillBusiness.currentBill.Total_Price + " RSD";
+                bp.UpdateCaffeBill(BillBusiness.currentBill);
+
+            }
+            Response.Redirect("Bill.aspx");
         }
 
         protected void Button3_ServerClick(object sender, EventArgs e)
@@ -74,6 +118,11 @@ namespace CaffeOrganizerWeb
             BillBusiness.currentBill = null;
             Response.Redirect("Home.aspx");
 
+        }
+
+        protected void Button1_ServerClick(object sender, EventArgs e)
+        {
+            Response.Redirect("Home.aspx");
         }
     }
 }
