@@ -63,11 +63,12 @@ namespace DataLayer
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = connection;
-                sqlCommand.CommandText = "Update Bills SET Table_ID =@tableID, Total_Price = @totalPrice, Date_And_Time = @dateAndTime where Bill_ID = @billID";
+                sqlCommand.CommandText = "Update Bills SET Table_ID =@tableID, Total_Price = @totalPrice, Date_And_Time = @dateAndTime, Paid = @Paid where Bill_ID = @billID";
                 sqlCommand.Parameters.AddWithValue("@tableID", caffeBill.Table_ID);
                 sqlCommand.Parameters.AddWithValue("@totalPrice", caffeBill.Total_Price);
                 sqlCommand.Parameters.AddWithValue("@dateAndTime", caffeBill.Date_And_Time);
                 sqlCommand.Parameters.AddWithValue("@billID", caffeBill.Bill_ID);
+                sqlCommand.Parameters.AddWithValue("@Paid", caffeBill.Paid);
                 result = sqlCommand.ExecuteNonQuery();
             }
             return result;
