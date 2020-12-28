@@ -70,7 +70,6 @@ namespace CaffeOrganizerWeb
                 BillBusiness.currentBill = b11.getCaffeBills().Where(x => x.Paid == false && t.Table_ID == x.Table_ID).ToList()[0];
             }
             b11.InsertCaffeBill(BillBusiness.currentBill);
-            t.Table_ID = Convert.ToInt32(b1.CommandArgument);
             TableBusiness.curentTable = t;
             Response.Redirect("Bill.aspx");
             
@@ -84,11 +83,10 @@ namespace CaffeOrganizerWeb
             TableBusiness tb = new TableBusiness();
             CaffeTable t = tb.getCaffeTables().Where(x => x.Table_ID == (Convert.ToInt32(b1.ID))).ToList()[0];
             tb.UpdateTable(t);
-           
+        
             
                 BillBusiness.currentBill = b11.getCaffeBills().Where(x => x.Paid == false && t.Table_ID == x.Table_ID).ToList()[0];
-            
-            t.Table_ID = Convert.ToInt32(b1.CommandArgument);
+         
             TableBusiness.curentTable = t;
             Response.Redirect("Bill.aspx");
         }

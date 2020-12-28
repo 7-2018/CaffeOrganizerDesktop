@@ -25,6 +25,7 @@
 </div>
                    
                     <button class="btn btn-dark mt-4 mx-auto d-block" onserverclick="Button3_ServerClick" id="Button3" runat="server" style="font-size: 1.8rem;">Naplati</button><br />
+                    <button class="btn btn-dark mt-4 mx-auto d-block" id="Button1" onserverclick="Button1_ServerClick" runat="server" style="font-size: 1.8rem;">Vrati se nazad</button><br />
                 </div>
                 <div class="col-6">
 
@@ -33,7 +34,7 @@
                             <i class="fas fa-glass-whiskey py-3" style="color: white; font-size: 2rem;"></i>
                         </div>
                         <div class="col-10">
-                            <select class="form-control btn btn-dark" style="font-size: 2rem;">
+                            <select id="bezalkohola" runat="server" class="form-control btn btn-dark" style="font-size: 2rem;">
                                 <option selected disabled hidden>Bezalkoholna pića</option>
                                 <option>Coca Cola</option>
                                 <option>Sprite</option>
@@ -56,7 +57,7 @@
                             <i class="fas fa-beer py-3" style="color: white; font-size: 2rem;"></i>
                         </div>
                         <div class="col-10">
-                            <select class="form-control btn btn-dark" style="font-size: 2rem;">
+                            <select id="Pivo" runat="server" class="form-control btn btn-dark" style="font-size: 2rem;">
                                 <option selected disabled hidden>Pivo</option>
                                 <option>Bavaria</option>
                                 <option>Heinken</option>
@@ -74,7 +75,7 @@
                             <i class="fas fa-glass-martini-alt py-3" style="color: white; font-size: 2rem;"></i>
                         </div>
                         <div class="col-10">
-                            <select class="form-control btn btn-dark" style="font-size: 2rem;">
+                            <select id="zestina" runat="server" class="form-control btn btn-dark" style="font-size: 2rem;">
                                 <option selected disabled hidden>Žestina</option>
                                 <option>Tequila(BLANCA)</option>
                                 <option>Martini</option>

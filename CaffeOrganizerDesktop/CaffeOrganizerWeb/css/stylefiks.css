@@ -8192,14 +8192,15 @@ h1, h2, h3, h4, h5,
   width: 100%; }
 
 #sidebar {
-  min-width: 270px;
-  max-width: 270px;
-  background: #4fb9b1;
-  color: #fff;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-  position: relative; }
+    min-width: 270px;
+    max-width: 270px;
+    background: #454242;
+    color: #fff;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    position: relative;
+}
   #sidebar .h6 {
     color: #fff; }
   #sidebar.active {
@@ -8265,18 +8266,19 @@ h1, h2, h3, h4, h5,
         background: transparent;
         border-color: transparent; }
         #sidebar .custom-menu .btn.btn-primary:after {
-          z-index: -1;
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          content: '';
-          -webkit-transform: rotate(45deg);
-          -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
-          background: #4fb9b1;
-          border-radius: 10px; }
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            content: '';
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            background: #454242;
+            border-radius: 10px;
+        }
         #sidebar .custom-menu .btn.btn-primary:hover, #sidebar .custom-menu .btn.btn-primary:focus {
           background: transparent !important;
           border-color: transparent !important; }
