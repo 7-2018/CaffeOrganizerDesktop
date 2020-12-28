@@ -27,10 +27,12 @@ namespace CaffeOrganizerWeb
                 b.Click += B_Click;
                 b.ID = c.Table_ID.ToString();
                 b.Attributes.Add("class", "btn btn-outline-danger");
+                b.CommandArgument = i.ToString();
                 Button b1 = new Button();
                 b1.Text = "Ocuppy";
                 b1.Click += B1_Click;
                 b1.ID = (c.Table_ID+99).ToString();
+                b1.CommandArgument = i.ToString();
                 b1.Attributes.Add("class", "btn btn-outline-success");
                 if (c.Taken)
                 {
@@ -68,18 +70,27 @@ namespace CaffeOrganizerWeb
                 BillBusiness.currentBill = b11.getCaffeBills().Where(x => x.Paid == false && t.Table_ID == x.Table_ID).ToList()[0];
             }
             b11.InsertCaffeBill(BillBusiness.currentBill);
+            t.Table_ID = Convert.ToInt32(b1.CommandArgument);
+            TableBusiness.curentTable = t;
             Response.Redirect("Bill.aspx");
             
         }
 
         private void B_Click(object sender, EventArgs e)
         {
-            Button b = sender as Button;
+            BillBusiness b11 = new BillBusiness();
+
+            Button b1 = sender as Button;
             TableBusiness tb = new TableBusiness();
-            CaffeTable t = tb.getCaffeTables().Where(x => x.Table_ID == Convert.ToInt32(b.ID)).ToList()[0];
-            t.Taken = false;
+            CaffeTable t = tb.getCaffeTables().Where(x => x.Table_ID == (Convert.ToInt32(b1.ID))).ToList()[0];
             tb.UpdateTable(t);
-            Response.Redirect("Home.aspx");
+           
+            
+                BillBusiness.currentBill = b11.getCaffeBills().Where(x => x.Paid == false && t.Table_ID == x.Table_ID).ToList()[0];
+            
+            t.Table_ID = Convert.ToInt32(b1.CommandArgument);
+            TableBusiness.curentTable = t;
+            Response.Redirect("Bill.aspx");
         }
     }
 }

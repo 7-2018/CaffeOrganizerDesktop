@@ -28,7 +28,7 @@ namespace DataLayer.Models
 
         public override string ToString()
         {
-            return $"{article_ID}-{name}-{price}-{packaging}";
+            return $"{name} - {price} RSD";
         }
     }
 }
