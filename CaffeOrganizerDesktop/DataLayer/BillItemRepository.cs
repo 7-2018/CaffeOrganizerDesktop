@@ -62,11 +62,12 @@ namespace DataLayer
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand(connectionString);
-                sqlCommand.CommandText = "Update BillItems SET Quantity=@quantity where Article_ID =@articleID, Bill_ID = @bill_ID,";
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandText = "Update BillItems SET Quantity=@quantity where Article_ID =@articleID and Bill_ID = @bill_ID";
                 sqlCommand.Parameters.AddWithValue("@quantity", caffeBillItem.Quantity);
-                sqlCommand.Parameters.AddWithValue("@numberOfSeats", caffeBillItem.Article_ID);
-                sqlCommand.Parameters.AddWithValue("@take", caffeBillItem.Bill_ID);
+                sqlCommand.Parameters.AddWithValue("@articleID", caffeBillItem.Article_ID);
+                sqlCommand.Parameters.AddWithValue("@bill_ID", caffeBillItem.Bill_ID);
                 result = sqlCommand.ExecuteNonQuery();
             }
             return result;

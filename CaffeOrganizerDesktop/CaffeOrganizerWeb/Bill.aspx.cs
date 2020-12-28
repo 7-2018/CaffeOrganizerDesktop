@@ -20,6 +20,7 @@ namespace CaffeOrganizerWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             naslov.InnerText = "RAČUN ZA STO BROJ ";
+            radnik.InnerText = "Radnik: " + WorkerBusiness.currentWoker.User_Name;
             naslov.Style.Add("color", "#a37417");
             naslov.Style.Add("font-size", "3.5rem");
             naslov.Style.Add("font-family", "times new roman");
@@ -36,7 +37,7 @@ namespace CaffeOrganizerWeb
                 HtmlGenericControl par = new HtmlGenericControl("p");
                 par.Style.Add("font-size", "1.3rem");
                 par.Style.Add("font-family", "Times New Roman");
-                par.InnerText = ab.GetCaffeArticles().Where(x => x.Article_ID == c.Article_ID).ToList()[0].ToString();
+                par.InnerText = ab.GetCaffeArticles().Where(x => x.Article_ID == c.Article_ID).ToList()[0].ToString() + "   x"+c.Quantity;
                 contentmain.Controls.Add(par);
             }
         }
@@ -57,7 +58,17 @@ namespace CaffeOrganizerWeb
                 par.InnerText = c.ToString();
                // contentmain.Controls.Add(par);
                 BillItemRepository br = new BillItemRepository();
-                 billItem.InsertCaffeBillItem(new CaffeBillItem(c.Article_ID, BillBusiness.currentBill.Bill_ID, 1));
+                try
+                {
+                    billItem.InsertCaffeBillItem(new CaffeBillItem(c.Article_ID, BillBusiness.currentBill.Bill_ID, 1));
+                }
+                catch(Exception xr)
+                {
+                    CaffeBillItem cs = cb.Where(x => x.Article_ID == c.Article_ID && x.Bill_ID == BillBusiness.currentBill.Bill_ID).ToList()[0];
+                    cs.Quantity = cs.Quantity + 1;
+                    billItem.UpdateBillItem(cs);
+
+                }
                 Label1.Text = "Total: " + BillBusiness.currentBill.Total_Price+" RSD";
                 bp.UpdateCaffeBill(BillBusiness.currentBill);
                 
@@ -71,7 +82,17 @@ namespace CaffeOrganizerWeb
                 par.InnerText = c.ToString();
                 // contentmain.Controls.Add(par);
                 BillItemRepository br = new BillItemRepository();
-                billItem.InsertCaffeBillItem(new CaffeBillItem(c.Article_ID, BillBusiness.currentBill.Bill_ID, 1));
+                try
+                {
+                    billItem.InsertCaffeBillItem(new CaffeBillItem(c.Article_ID, BillBusiness.currentBill.Bill_ID, 1));
+                }
+                catch (Exception xr)
+                {
+                    CaffeBillItem cs = cb.Where(x => x.Article_ID == c.Article_ID && x.Bill_ID == BillBusiness.currentBill.Bill_ID).ToList()[0];
+                    cs.Quantity = cs.Quantity + 1;
+                    billItem.UpdateBillItem(cs);
+
+                }
                 Label1.Text = "Total: " + BillBusiness.currentBill.Total_Price + " RSD";
                 bp.UpdateCaffeBill(BillBusiness.currentBill);
              
@@ -85,13 +106,23 @@ namespace CaffeOrganizerWeb
                 par.InnerText = c.ToString();
                 // contentmain.Controls.Add(par);
                 BillItemRepository br = new BillItemRepository();
-                billItem.InsertCaffeBillItem(new CaffeBillItem(c.Article_ID, BillBusiness.currentBill.Bill_ID, 1));
+                try
+                {
+                    billItem.InsertCaffeBillItem(new CaffeBillItem(c.Article_ID, BillBusiness.currentBill.Bill_ID, 1));
+                }
+                catch (Exception xr)
+                {
+                    CaffeBillItem cs = cb.Where(x => x.Article_ID == c.Article_ID && x.Bill_ID == BillBusiness.currentBill.Bill_ID).ToList()[0];
+                    cs.Quantity = cs.Quantity + 1;
+                    billItem.UpdateBillItem(cs);
+
+                }
                 Label1.Text = "Total: " + BillBusiness.currentBill.Total_Price + " RSD";
                 bp.UpdateCaffeBill(BillBusiness.currentBill);
 
             }
             String s3 = bezalkohola.Value;
-            if (s3 != null && s3 != "Pivo")
+            if (s3 != null && s3 != "Bezalkoholna pića")
             {
                 CaffeArticle c = ab.GetCaffeArticles().Where(x => x.Name.Equals(s3)).ToList()[0];
                 BillBusiness.currentBill.Total_Price += c.Price;
@@ -99,7 +130,17 @@ namespace CaffeOrganizerWeb
                 par.InnerText = c.ToString();
                 // contentmain.Controls.Add(par);
                 BillItemRepository br = new BillItemRepository();
-                billItem.InsertCaffeBillItem(new CaffeBillItem(c.Article_ID, BillBusiness.currentBill.Bill_ID, 1));
+                try
+                {
+                    billItem.InsertCaffeBillItem(new CaffeBillItem(c.Article_ID, BillBusiness.currentBill.Bill_ID, 1));
+                }
+                catch (Exception xr)
+                {
+                    CaffeBillItem cs = cb.Where(x => x.Article_ID == c.Article_ID && x.Bill_ID == BillBusiness.currentBill.Bill_ID).ToList()[0];
+                    cs.Quantity = cs.Quantity + 1;
+                    billItem.UpdateBillItem(cs);
+
+                }
                 Label1.Text = "Total: " + BillBusiness.currentBill.Total_Price + " RSD";
                 bp.UpdateCaffeBill(BillBusiness.currentBill);
 

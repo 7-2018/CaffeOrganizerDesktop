@@ -10,6 +10,14 @@ namespace BusinessLayer
     public class WorkerBusiness
     {
             private WorkerRepository workerRepository;
+
+        public static CaffeWorker currentWoker;
+
+        public CaffeWorker getsetworker
+        {
+            get { return currentWoker; }
+            set { currentWoker = value; }
+        }
             public WorkerBusiness()
             {
             this.workerRepository = new WorkerRepository();

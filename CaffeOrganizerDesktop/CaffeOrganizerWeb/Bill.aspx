@@ -20,6 +20,7 @@
                    <div class="card" style="background-color:transparent; color:white; border:1px solid white;">
   <div id="contentmain" runat="server" class="card-body" >
       <h1 style="font-family:'Times New Roman'; font-size:2rem; text-align:center;">Račun</h1>
+       <h1 style="font-family:'Times New Roman'; font-size:2rem; text-align:center;" id="radnik" runat="server">Radnik: </h1>
   </div>
                         <asp:Label CssClass="mx-auto d-block text-center my-3 text-light" style="font-size:1.3rem;" ID="Label1" runat="server" Text="Total"></asp:Label>
 </div>

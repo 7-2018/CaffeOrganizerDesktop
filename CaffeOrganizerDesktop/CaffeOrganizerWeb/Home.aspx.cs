@@ -15,6 +15,7 @@ namespace CaffeOrganizerWeb
         public HtmlGenericControl column;
         protected void Page_Load(object sender, EventArgs e)
         {
+            currwork.InnerText = WorkerBusiness.currentWoker.User_Name;
             int i = 1;
             
             TableBusiness tb = new TableBusiness();
@@ -23,13 +24,13 @@ namespace CaffeOrganizerWeb
                column  = new HtmlGenericControl("div");
                 column.Attributes.Add("class", "col-3 text-center");
                 Button b = new Button();
-                b.Text = "View Bill";
+                b.Text = "Račun";
                 b.Click += B_Click;
                 b.ID = c.Table_ID.ToString();
                 b.Attributes.Add("class", "btn btn-outline-danger");
                 b.CommandArgument = i.ToString();
                 Button b1 = new Button();
-                b1.Text = "Ocuppy";
+                b1.Text = "Zauzmi";
                 b1.Click += B1_Click;
                 b1.ID = (c.Table_ID+99).ToString();
                 b1.CommandArgument = i.ToString();
@@ -37,12 +38,12 @@ namespace CaffeOrganizerWeb
                 if (c.Taken)
                 {
 
-                    column.InnerHtml += $"<p  style='background:red;border-radius: 0.5rem'>Table: {i} <br><i class='fa fa-coffee fa-3x' aria-hidden='true'></i><br> Seats: {c.Number_Of_Seats}<p>";
+                    column.InnerHtml += $"<p  style='background:red;border-radius: 0.5rem'>Sto: {i} <br><i class='fa fa-coffee fa-3x' aria-hidden='true'></i><br> Broj mesta: {c.Number_Of_Seats}<p>";
                     column.Controls.Add(b);
                 }
                 else
                 {
-                    column.InnerHtml += $"<p style='background:green;border-radius: 0.5rem'>Table: {i} <br><i class='fa fa-coffee fa-3x' aria-hidden='true'></i><br> Seats: {c.Number_Of_Seats}<p>";
+                    column.InnerHtml += $"<p style='background:green;border-radius: 0.5rem'>Sto: {i} <br><i class='fa fa-coffee fa-3x' aria-hidden='true'></i><br> Broj mesta: {c.Number_Of_Seats}<p>";
                     column.Controls.Add(b1);
                 }
                 maindiv.Controls.Add(column);
@@ -69,7 +70,8 @@ namespace CaffeOrganizerWeb
                 b11.InsertCaffeBill(new CaffeBill(999, (Convert.ToInt32(b1.ID) - 99), 0, DateTime.Now, false));
                 BillBusiness.currentBill = b11.getCaffeBills().Where(x => x.Paid == false && t.Table_ID == x.Table_ID).ToList()[0];
             }
-            b11.InsertCaffeBill(BillBusiness.currentBill);
+         
+            t.Table_ID = Convert.ToInt32(b1.CommandArgument);
             TableBusiness.curentTable = t;
             Response.Redirect("Bill.aspx");
             
@@ -83,7 +85,7 @@ namespace CaffeOrganizerWeb
             TableBusiness tb = new TableBusiness();
             CaffeTable t = tb.getCaffeTables().Where(x => x.Table_ID == (Convert.ToInt32(b1.ID))).ToList()[0];
             tb.UpdateTable(t);
-        
+         
             
                 BillBusiness.currentBill = b11.getCaffeBills().Where(x => x.Paid == false && t.Table_ID == x.Table_ID).ToList()[0];
          
