@@ -148,5 +148,16 @@ namespace CaffeOrganizer
                 refresh();
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TableBusiness tb = new TableBusiness();
+            TableBusiness.curentTable.Taken = false;
+            tb.UpdateTable(TableBusiness.curentTable);
+            BillBusiness bb = new BillBusiness();
+            BillBusiness.currentBill.Paid = true;
+            bb.UpdateCaffeBill(BillBusiness.currentBill);
+            this.Hide();
+        }
     }
 }
