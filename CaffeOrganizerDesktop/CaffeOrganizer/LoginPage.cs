@@ -33,5 +33,19 @@ namespace CaffeOrganizer
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            WorkerBusiness wb = new WorkerBusiness();
+            foreach (CaffeWorker w in wb.GetCaffeWorkers())
+            {
+                if (textBox1.Text.Equals(w.User_Name) && textBox2.Text.Equals(w.Password))
+                {
+                    MainPage mp = new MainPage();
+                    mp.Show();
+                    this.Hide();
+                }
+            }
+        }
     }
 }
