@@ -35,7 +35,8 @@ namespace DataLayer
             {
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.CommandText = $"Insert into Workers(Worker_ID, Password, User_Name, Email, Phone) values({caffeWorker.Worker_ID},{caffeWorker.Password},{caffeWorker.User_Name},{caffeWorker.Email},{caffeWorker.Phone})";
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandText = $"Insert into Workers( Password, User_Name, Email, Phone) values('{caffeWorker.Password}','{caffeWorker.User_Name}','{caffeWorker.Email}','{caffeWorker.Phone}')";
                 result = sqlCommand.ExecuteNonQuery();
             }
             return result;
@@ -46,7 +47,8 @@ namespace DataLayer
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand(connectionString);
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
                 sqlCommand.CommandText = "Delete from Workers where Worker_ID = @Worker_ID";
                 sqlCommand.Parameters.AddWithValue("@Worker_ID", workerid);
                 result = sqlCommand.ExecuteNonQuery();
@@ -59,8 +61,9 @@ namespace DataLayer
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand(connectionString);
-                sqlCommand.CommandText = "Update Students SET Password =@pass, User_Name = @userName, Email=@email, Phone=@phone where Worker_ID = @workerID";
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandText = "Update Workers SET Password =@pass, User_Name = @userName, Email=@email, Phone=@phone where Worker_ID = @workerID";
                 sqlCommand.Parameters.AddWithValue("@pass", caffeWorker.Password);
                 sqlCommand.Parameters.AddWithValue("@userName", caffeWorker.User_Name);
                 sqlCommand.Parameters.AddWithValue("@email", caffeWorker.Email);

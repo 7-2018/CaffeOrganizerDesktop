@@ -144,7 +144,7 @@ namespace CaffeOrganizer
         {
             BillBusiness b11 = new BillBusiness();
             TableBusiness tb = new TableBusiness();
-            CaffeTable t = tb.getCaffeTables().Where(x => x.Table_ID == Convert.ToInt32(button1.Text)).ToList()[0];
+            CaffeTable t = tb.getCaffeTables().Where(x => x.Table_ID == Convert.ToInt32(button2.Text)).ToList()[0];
             TableBusiness.curentTable = t;
             t.Taken = true;
             tb.UpdateTable(t);
@@ -285,6 +285,13 @@ namespace CaffeOrganizer
             }
             Bill b = new Bill();
             b.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            LoginPage l1 = new LoginPage();
+            l1.Show();
+            this.Hide();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace DataLayer.Tests
         [TestInitialize]
         public void init()
         {
-            c = new CaffeBillItem(84, 3, 1);
+            c = new CaffeBillItem(4, 5204, 8);
             cr = new BillItemRepository();
         }
         [TestMethod()]

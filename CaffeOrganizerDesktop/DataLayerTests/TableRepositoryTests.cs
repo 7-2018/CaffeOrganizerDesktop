@@ -18,7 +18,7 @@ namespace DataLayer.Tests
         [TestInitialize]
         public void init()
         {
-            t = new CaffeTable(3, 1, 4, false);
+            t = new CaffeTable(17, 1, 4, false);
             tr = new TableRepository();
         }
         [TestMethod()]
