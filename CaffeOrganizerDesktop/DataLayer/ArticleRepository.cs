@@ -36,7 +36,8 @@ namespace DataLayer
             {
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.CommandText = $"Insert into Articles(Article_ID, Name, Price, Packaging) values({caffeArticle.Article_ID},{caffeArticle.Name},{caffeArticle.Price},{caffeArticle.Packaging})";
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandText = $"Insert into Articles(Name, Price, Packaging) values('{caffeArticle.Name}',{caffeArticle.Price},'{caffeArticle.Packaging}')";
                 result = sqlCommand.ExecuteNonQuery();
             }
             return result;
@@ -47,7 +48,8 @@ namespace DataLayer
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand(connectionString);
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
                 sqlCommand.CommandText = "Delete from Articles where Article_ID = @articleID";
                 sqlCommand.Parameters.AddWithValue("@articleID", articleid);
                 result = sqlCommand.ExecuteNonQuery();
@@ -60,7 +62,8 @@ namespace DataLayer
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand(connectionString);
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
                 sqlCommand.CommandText = "Update Articles SET Name =@name, Price= @price, Packaging=@package where Article_ID = @articleID";
                 sqlCommand.Parameters.AddWithValue("@name", caffeArticle.Name);
                 sqlCommand.Parameters.AddWithValue("@price", caffeArticle.Price);

@@ -35,8 +35,9 @@ namespace DataLayer
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand(connectionString);
-                sqlCommand.CommandText = $"Insert into Tables(Table_ID, Worker_ID, Number_Of_Seats, Taken) values({caffeTable.Table_ID},{caffeTable.Worker_ID},{caffeTable.Number_Of_Seats},{caffeTable.Taken})";
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandText = $"Insert into Tables(Table_ID, Worker_ID, Number_Of_Seats, Taken) values({caffeTable.Table_ID},{caffeTable.Worker_ID},{caffeTable.Number_Of_Seats},'{caffeTable.Taken}')";
                 result = sqlCommand.ExecuteNonQuery();
             }
             return result;
@@ -47,7 +48,8 @@ namespace DataLayer
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand(connectionString);
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
                 sqlCommand.CommandText = "Delete from Tables where Table_ID = @tableID";
                 sqlCommand.Parameters.AddWithValue("@tableID", tableid);
                 result = sqlCommand.ExecuteNonQuery();

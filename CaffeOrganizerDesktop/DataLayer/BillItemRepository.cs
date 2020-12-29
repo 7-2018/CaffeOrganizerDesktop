@@ -48,9 +48,10 @@ namespace DataLayer
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand(connectionString);
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
                 sqlCommand.CommandText = "Delete from BillItems where Article_ID = @articleID and Bill_ID= @bill_ID";
-                sqlCommand.Parameters.AddWithValue("@article_ID", itemid);
+                sqlCommand.Parameters.AddWithValue("@articleID", itemid);
                 sqlCommand.Parameters.AddWithValue("@bill_ID", billid);
                 result = sqlCommand.ExecuteNonQuery();
             }
