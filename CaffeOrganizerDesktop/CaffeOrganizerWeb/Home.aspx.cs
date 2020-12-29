@@ -27,14 +27,16 @@ namespace CaffeOrganizerWeb
                 b.Text = "Račun";
                 b.Click += B_Click;
                 b.ID = c.Table_ID.ToString();
-                b.Attributes.Add("class", "btn btn-outline-danger");
+                b.Attributes.Add("class", "btn btn-outline-danger btnBillTaken");
+                b.Attributes.Add("style", "background:white;opacity:0.6");
                 b.CommandArgument = i.ToString();
                 Button b1 = new Button();
                 b1.Text = "Zauzmi";
                 b1.Click += B1_Click;
                 b1.ID = (c.Table_ID+99).ToString();
                 b1.CommandArgument = i.ToString();
-                b1.Attributes.Add("class", "btn btn-outline-success");
+                b1.Attributes.Add("class", "btnBillFree btn btn-outline-success ");
+                b1.Attributes.Add("style", "background:white;opacity:0.6");
                 if (c.Taken)
                 {
 
