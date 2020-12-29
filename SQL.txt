@@ -1,0 +1,41 @@
+
+CREATE TABLE [dbo].[Workers] (
+    [Worker_ID] INT           IDENTITY (1, 1) NOT NULL,
+    [Password]  NVARCHAR (50) NOT NULL,
+    [User_Name] NVARCHAR (50) NOT NULL,
+    [Email]     NVARCHAR (50) NOT NULL,
+    [Phone]     NVARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Worker_ID] ASC)
+);
+CREATE TABLE [dbo].[Tables] (
+    [Table_ID]        INT NOT NULL,
+    [Worker_ID]       INT NOT NULL,
+    [Number_Of_Seats] INT NOT NULL,
+    [Taken]           BIT NOT NULL,
+    CONSTRAINT [PK_Tables] PRIMARY KEY CLUSTERED ([Table_ID] ASC),
+    CONSTRAINT [FK_Tables] FOREIGN KEY ([Worker_ID]) REFERENCES [dbo].[Workers] ([Worker_ID])
+);
+CREATE TABLE [dbo].[Articles] (
+    [Article_ID] INT           IDENTITY (1, 1) NOT NULL,
+    [Name]       NVARCHAR (30) NOT NULL,
+    [Price]      INT           NOT NULL,
+    [Packaging]  NVARCHAR (40) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Article_ID] ASC)
+);
+CREATE TABLE [dbo].[Bills] (
+    [Bill_ID]       INT      IDENTITY (1, 1) NOT NULL,
+    [Table_ID]      INT      NOT NULL,
+    [Total_Price]   INT      NOT NULL,
+    [Date_And_Time] DATETIME NOT NULL,
+    [Paid]          BIT      NULL,
+    PRIMARY KEY CLUSTERED ([Bill_ID] ASC),
+    CONSTRAINT [FK_Bills] FOREIGN KEY ([Table_ID]) REFERENCES [dbo].[Tables] ([Table_ID])
+);
+CREATE TABLE [dbo].[BillItems] (
+    [Article_ID] INT NOT NULL,
+    [Bill_ID]    INT NOT NULL,
+    [Quantity]   INT NOT NULL,
+    CONSTRAINT [PK_BillItems] PRIMARY KEY CLUSTERED ([Article_ID] ASC, [Bill_ID] ASC),
+    CONSTRAINT [FK_Article] FOREIGN KEY ([Article_ID]) REFERENCES [dbo].[Articles] ([Article_ID]),
+    CONSTRAINT [FK_Bill] FOREIGN KEY ([Bill_ID]) REFERENCES [dbo].[Bills] ([Bill_ID])
+);
