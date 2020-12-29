@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
-    class ArticleBusiness
+    public class ArticleBusiness
     {
         private DataLayer.ArticleRepository articleRepository;
         public ArticleBusiness()
