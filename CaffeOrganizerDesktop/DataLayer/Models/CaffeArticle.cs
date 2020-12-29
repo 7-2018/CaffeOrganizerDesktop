@@ -28,7 +28,7 @@ namespace DataLayer.Models
 
         public override string ToString()
         {
-            return $"{name} - {price} RSD";
+            return $"{name}-{price} RSD";
         }
     }
 }
